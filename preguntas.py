@@ -131,8 +131,7 @@ def pregunta_04():
         (X_fertility,
          y_life,
         test_size=0.2,
-        random_state=53,
-    )
+        random_state=53,)
 
     # Cree una instancia del modelo de regresión lineal
     linearRegression = LinearRegression()
