@@ -28,10 +28,10 @@ def pregunta_01():
     print(X.shape)
 
     # Transforme `y` a un array de numpy usando reshape
-    y_reshaped = y.reshape(-1, 1)
+    y_reshaped = y.values.reshape(y.shape[0], 1)
 
     # Trasforme `X` a un array de numpy usando reshape
-    X_reshaped = X.reshape(-1, 1)
+    X_reshaped = X.values.reshape(X.shape[0], 1)
 
     # Imprima las nuevas dimensiones de `y`
     print(y_reshaped.shape)
@@ -53,16 +53,16 @@ def pregunta_02():
     print(df.shape)
 
     # Imprima la correlación entre las columnas `life` y `fertility` con 4 decimales.
-    print(round(df['life'].corr(df['fertility']), 4))
+    print("{:.4f}".format(df['life'].corr(df['fertility'])))
     
     # Imprima la media de la columna `life` con 4 decimales.
-    print(round(df['life'].mean(), 4))
+    print("{:.4f}".format(df['life'].mean()))
 
     # Imprima el tipo de dato de la columna `fertility`.
-    print(type(df['fertility']))
+    print(df['fertility'].__class__)
 
     # Imprima la correlación entre las columnas `GDP` y `life` con 4 decimales.
-    print(round(df['GDP'].corr(df['life']), 4))
+    print("{:.4f}".format(df['GDP'].corr(df['life'])))
     
 
 def pregunta_03():
@@ -75,10 +75,10 @@ def pregunta_03():
     df = pd.read_csv("gm_2008_region.csv")
 
     # Asigne a la variable los valores de la columna `fertility`
-    X_fertility = df["fertility"].values
+    X_fertility = df["fertility"]
 
     # Asigne a la variable los valores de la columna `life`
-    y_life = df["life"].values
+    y_life = df["life"]
     
     # Importe LinearRegression
     from sklearn.linear_model import LinearRegression
@@ -94,13 +94,13 @@ def pregunta_03():
     ).reshape(-1, 1)
 
     # Entrene el modelo usando X_fertility y y_life
-    reg.fit(X_fertility.reshape(-1, 1), y_life)
+    reg.fit(X_fertility.values.reshape(-1, 1), y_life.values.reshape(-1, 1))
 
     # Compute las predicciones para el espacio de predicción
     y_pred = reg.predict(prediction_space)
 
     # Imprima el R^2 del modelo con 4 decimales
-    print(reg.score(X_fertility.reshape(-1, 1), y_life).round(4))
+    print(reg.score(X_fertility.values.reshape(-1, 1), y_life.values.reshape(-1, 1)).round(4))
 
 
 def pregunta_04():
